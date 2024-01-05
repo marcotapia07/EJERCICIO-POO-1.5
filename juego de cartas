@@ -1,0 +1,91 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+class Carta{
+    private String nombre;
+
+    public Carta(String nombre){
+        this.nombre = nombre;
+    }
+
+    public void jugar(){
+        System.out.println("Nombre de la carta: " + nombre);
+
+    }
+
+    public void mostrarDescripcion(){
+        //System.out.println("Nombre de la carta: " + nombre);
+        System.out.println("Carta de ataque");
+        System.out.println("5 de ataque");
+        System.out.println("--------------------------");
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(){
+        this.nombre = nombre;
+    }
+}
+class CartaNumerica extends Carta{
+    private int numero=5;
+
+    public int getNumero(){
+        return numero;
+    }
+
+    public void setNumero(){
+        this.numero = numero;
+    }
+
+
+    public CartaNumerica(String nombre, int numero){
+       super(nombre);
+        this.numero = numero;
+    }
+
+    public void ataque(){
+        Scanner num = new Scanner(System.in);
+        System.out.println("Ingrese el numero de ataque: ");
+        try {
+            int numeroIngresado = num.nextInt();
+            if (numeroIngresado == 5) {
+                System.out.println("Se activa ataque");
+                System.out.println("---------------------------------------");
+            } else {
+                throw new InputMismatchException("Número de ataque incorrecto");
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Digite el numero que corresponde");
+
+        }
+
+    }
+
+}
+ class CartaEspecial extends Carta{
+
+    public CartaEspecial(String nombre){
+        super(nombre);
+    }
+
+   public static void activarEfectoEspecial(){
+        System.out.println("Carta ataca");
+        System.out.println("Carta no ataca");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        CartaNumerica dato = new CartaNumerica("Mago", 5);
+        dato.jugar();
+        dato.mostrarDescripcion();
+        dato.ataque();
+        CartaEspecial.activarEfectoEspecial();
+
+        CartaNumerica[] carta=new CartaNumerica[2];
+        carta[0] = new CartaNumerica("Mago", 5);
+        carta[1] = dato;
+    }
+}
