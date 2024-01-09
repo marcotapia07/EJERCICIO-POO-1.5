@@ -1,0 +1,112 @@
+//"En el contexto deportivo, diseñar un sistema con una clase principal y dos clases hijas, cada una con atributos encapsulados.
+// Implementar un mecanismo try-catch para gestionar errores en la entrada de datos. Desarrollar métodos para validar la mayoría
+// de edad de los participantes y evaluar su aptitud en una disciplina específica. Definir atributos pertinentes, considerando el
+// tipo de disciplina. Para ser aceptado en el registro, se requiere carecer de sanciones recientes y haberse sometido a exámenes
+// médicos en diciembre de 2023."
+
+
+class Deportes{
+    private String nombre;
+    public String disciplina;
+
+    public Deportes(String nombre, String disciplina){
+        this.nombre=nombre;
+        this.disciplina=disciplina;
+    }
+
+    public String getNombre(){
+
+        return nombre;
+    }
+
+    public void setNombre(){
+        this.nombre=nombre;
+    }
+
+    public static void aceptacion(){
+        System.out.println("---------------------");
+        System.out.println("Estudiante no tiene sanciones");
+        System.out.println("Tiene todos los examenes medicos");
+        System.out.println("Aceptado");
+    }
+
+    public static void declinacion(){
+        System.out.println("---------------------");
+        System.out.println("Estudiante tiene sanciones");
+        System.out.println("No tiene todos los examenes medicos");
+        System.out.println("No ha sido aceptado");
+    }
+
+
+
+
+}
+class numero extends Deportes{
+    private int edad;
+
+    public numero(String nombre, String disciplina, int edad){
+        super(nombre,disciplina);
+        this.edad=edad;
+    }
+    
+    
+   
+    public int getEdad(){
+        return edad;
+    }
+
+    public void setEdad(int edad){
+        this.edad=edad;
+    }
+
+
+    public void datos(){
+        System.out.println("--------------DEPORTES----------------");
+        System.out.println("Nombre del deportista: " + getNombre());
+        System.out.println("Disciplina: " + disciplina);
+
+        try {
+            if (edad % 1 != 0) {
+                throw new Exception("La edad no puede ser un decimal");
+            } else {
+                System.out.println("Edad: " + edad);
+            }
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+}
+
+class actitud extends Deportes {
+    private int acti;
+
+    public actitud(String nombre, String disciplina, int acti) {
+        super(nombre, disciplina);
+        this.acti = acti;
+    }
+
+    public int getActi() {
+        return acti;
+    }
+
+    public void setActi(int acti) {
+        this.acti = acti;
+    }
+
+    public void dato1(){
+        System.out.println("Actitud: " +acti);
+    }
+
+}
+
+public class Main {
+    public static void main(String[] args){
+        numero deportes = new numero("Marco Tapia", "Futbol", 20);
+        actitud depor = new actitud("", "", 10);
+        deportes.datos();
+        depor.dato1();
+        Deportes.aceptacion();
+
+    }
+}
